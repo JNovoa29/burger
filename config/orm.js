@@ -1,6 +1,7 @@
 var config = require('./connection.js');
 
 //connect to mysql db
+
 config.connect(function (e) {
     if (e) throw e
     console.log(r)
