@@ -2,39 +2,39 @@ var config = require('./connection.js');
 
 //connect to mysql db
 
-config.connect(function (e) {
-    if (e) throw e
-    console.log(r)
-});
+// config.connect(function (e) {
+//     if (e) throw e
+//     console.log(r)
+// });
 
 //mysql
 var orm = {
-    selectAll: function (cb) {
+    selectAll: function (callback) {
         config.query('SELECT * FROM burgers', function (e, r) {
             if (e) throw e
-            cb(r)
+            callback(r)
         })
     },
 
-    insertOne: function (burger_name, cb) {
-        config.query('INSERT INTO burgers SET ?', {
-                burger_name: burger_name,
+    insertOne: function (table, col, val, callback) {
+        config.query('INSERT INTO '+table+' SET ?', {
+                'burger_name': val,
                 devoured: false
             },
             function (e, r) {
                 if (e) throw e
-                cb(r)
+                callback(r)
             })
     },
 
-    updateOne: function (id, cb) {
+    updateOne: function (table, col, val, callback) {
         config.query('UPDATE burgers SET ? WHERE?', [{
             devoured: true
         }], [{
             id: id
         }], function (e, r) {
             if (e) throw e
-            cb(r)
+            callback(r)
         })
     }
 };

@@ -11,22 +11,23 @@ router.get('/', function(req, res) {
 router.get('/index', function(req, res) {
     burger.selectAll(function(d) {
         var hbs = {burger: d}
+        console.log(hbs)
         res.render('index', hbs)
     })
 });
 
 //create
 router.post('/burger/create', function(req, res) {
-    burger.insertOne(req.body.burger_name, function() {
+    burger.insertOne('burger_name', req.body.burger_name, function(d) {
         res.redirect('/index')
     })
 });
 
 //devour
-router.post('/burger/eat/:id', function (req, res) {
-    burger.updateOne(req.params.id), function() {
+router.put('/burger/eat/:id', function (req, res) {
+    burger.updateOne({'devoured': req.body.devoured}, function(d) {
         res.redirect('/index')
-    }
+    })
 });
 
 module.exports = router;
