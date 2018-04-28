@@ -8,6 +8,7 @@ var burger = {
         });
     },
     insertOne: function(col, val, callback) {
+        console.log(val)
         orm.insertOne('burgers', col, val, function(r) {
             if(callback) callback(r);
         });

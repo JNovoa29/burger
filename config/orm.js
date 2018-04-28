@@ -17,6 +17,7 @@ var orm = {
     },
 
     insertOne: function (table, col, val, callback) {
+        console.log(val)
         config.query('INSERT INTO '+table+' SET ?', {
                 'burger_name': val,
                 devoured: false

@@ -18,6 +18,7 @@ router.get('/index', function(req, res) {
 
 //create
 router.post('/burger/create', function(req, res) {
+    console.log(req.body.burger_name)
     burger.insertOne('burger_name', req.body.burger_name, function(d) {
         res.redirect('/index')
     })
